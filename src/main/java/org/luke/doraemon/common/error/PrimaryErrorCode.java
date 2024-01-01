@@ -25,6 +25,6 @@ public enum PrimaryErrorCode {
         return this.code;
     }
 
-    private String code;
+    private final String code;
 }
 

@@ -1,21 +1,21 @@
-package test.org.doraemon.common.error;
+package org.luke.doraemon.common.error;
 
 import java.text.MessageFormat;
 import java.util.Objects;
 import org.apache.commons.lang3.StringUtils;
-import org.luke.doraemon.common.error.ErrorCodeUtils;
-import org.luke.doraemon.common.error.IBizErrorCode;
-import org.luke.doraemon.common.error.PrimaryErrorCode;
 
-public enum TestErrorCode implements IBizErrorCode {
-    TestBaseError(PrimaryErrorCode.InternalError, "TestBaseError", "this is a message, reason = {0}", "{1}", "{2}");
+public enum BizErrorCode implements IBizErrorCode {
+    TestBaseError(PrimaryErrorCode.InternalError, "TestBaseError", "this is a message, reason = {0}", "{1}", "{2}"),
+    UserNotFound(PrimaryErrorCode.ResourceNotFound, "UserNotFound", "userId={0} not found", "{1}", "{2}"),
+    InvalidParameter(PrimaryErrorCode.InvalidParameter, "", "invalidParameter, {0}", "{1}", "{2}");
+
     private final PrimaryErrorCode primaryErrorCode;
     private final String detailErrorCode;
     private final String errorMessage;
     private final String downStreamErrorCode;
     private final String downStreamErrorMessage;
 
-    TestErrorCode(PrimaryErrorCode primaryErrorCode, String detailErrorCode, String errorMessage,
+    BizErrorCode(PrimaryErrorCode primaryErrorCode, String detailErrorCode, String errorMessage,
             String downStreamErrorCode, String downStreamErrorMessage) {
         this.primaryErrorCode = primaryErrorCode;
         this.detailErrorCode = detailErrorCode;

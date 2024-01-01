@@ -16,6 +16,7 @@ public interface IBizErrorCode {
 
     Pattern errorPlaceholderPattern = Pattern.compile("\\{\\d+\\}");
 
+    // 用来过滤非法的{0}例子
     default String replacePlaceholderWithValue(String origin, Object...args) {
         if (origin == null) {
             return null;
