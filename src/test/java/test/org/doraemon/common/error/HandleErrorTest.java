@@ -13,8 +13,8 @@ public class HandleErrorTest {
     }
     
     public void handleErrorDemo(String x){
-        Integer integer = shouldPrint(x);
-        if(integer == null){
+        Integer retCode = shouldPrint(x);
+        if(retCode.equals(-1)){
             handleNullCondition();
         }else{
             handleOtherCondition();
