@@ -39,7 +39,7 @@ public class ExampleJobCenter extends AbstractJobCenter {
                 log.info("step1 jobName={}", jobRequest.getJobName());
                 return;
             }
-        }, "step1", 1, 1L));
+        }, 1, 1L));
 
 
         contextArrayList.add(new WorkerContext(new IWorker() {
@@ -48,7 +48,7 @@ public class ExampleJobCenter extends AbstractJobCenter {
                 log.info("step2 jobName={}", jobRequest.getJobName());
                 return;
             }
-        }, "step2", 1, 1L));
+        }, 1, 1L));
         return contextArrayList;
     }
 }
