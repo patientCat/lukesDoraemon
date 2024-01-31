@@ -52,8 +52,9 @@ public abstract class AbstractJobCenter {
             for (int i = 0; i < stepHandlerList.size(); i++) {
                 WorkerContext workerContext = stepHandlerList.get(i);
                 log.info("begin_number={}_step_name={}", i, workerContext.getName());
-                long sleepTimeSeconds = workerContext.getSleepTimeSeconds();
-                int retryTimes = workerContext.getRetryTimes();
+                WorkerParam workerParam = workerContext.getWorkerParam();
+                long sleepTimeSeconds = workerParam.getSleepTimeSeconds();
+                int retryTimes = workerParam.getRetryTimes();
                 Retryer<Boolean> retryer = RetryerBuilder.<Boolean>newBuilder()
                         .retryIfException()
                         .retryIfResult(BooleanUtils::isNotTrue)

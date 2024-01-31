@@ -11,4 +11,11 @@ public class JobCenterTest {
         JobRequest jobRequest = new JobRequest("001", "testJob", "context");
         exampleJobCenter.run(jobRequest);
     }
+
+    @Test
+    public void testJobCenterAfterFail(){
+        ExampleJobCenter exampleJobCenter = new ExampleJobCenter();
+        JobRequest jobRequest = new JobRequest("001", "testJob", "context");
+        exampleJobCenter.run(jobRequest);
+    }
 }

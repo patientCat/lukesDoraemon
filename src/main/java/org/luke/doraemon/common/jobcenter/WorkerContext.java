@@ -7,8 +7,7 @@ import lombok.Data;
 @AllArgsConstructor
 public class WorkerContext {
     private IWorker worker;
-    private Integer retryTimes;
-    private Long sleepTimeSeconds;
+    private WorkerParam workerParam;
 
     public String getName(){
         if(worker != null) {

@@ -7,18 +7,20 @@ import java.util.function.Function;
 import lombok.extern.slf4j.Slf4j;
 import org.luke.doraemon.common.constant.JobCenterName;
 import org.luke.doraemon.common.jobcenter.AbstractJobCenter;
+import org.luke.doraemon.common.jobcenter.AbstractStatusWorker;
 import org.luke.doraemon.common.jobcenter.DefaultFallback;
 import org.luke.doraemon.common.jobcenter.IWorker;
 import org.luke.doraemon.common.jobcenter.WorkerContext;
 import org.luke.doraemon.common.jobcenter.WorkerParam;
 import org.luke.doraemon.common.jobcenter.model.JobRequest;
+import org.luke.doraemon.common.jobcenter.repo.IJobStatusRepo;
 
 @Slf4j
-public class ExampleJobCenter extends AbstractJobCenter {
-
+public class StatusJobCenter extends AbstractJobCenter {
+    private IJobStatusRepo jobStatusRepo;
     @Override
     public String getJobName() {
-        return JobCenterName.ExampleJobCenter.getValue();
+        return JobCenterName.StatusJobCenter.getValue();
     }
 
     @Override
@@ -34,22 +36,32 @@ public class ExampleJobCenter extends AbstractJobCenter {
     @Override
     public List<WorkerContext> getWorkerList() {
         List<WorkerContext> contextArrayList = Lists.newArrayList();
-        contextArrayList.add(new WorkerContext(new IWorker() {
+        contextArrayList.add(new WorkerContext(new AbstractStatusWorker(jobStatusRepo) {
             @Override
-            public void apply(JobRequest jobRequest) {
+            public void doWork(JobRequest jobRequest) {
                 log.info("step1 jobName={}", jobRequest.getJobName());
                 return;
+            }
+
+            @Override
+            public String getName(){
+                return "step1";
             }
         }, WorkerParam.ofDefault()));
 
 
-        contextArrayList.add(new WorkerContext(new IWorker() {
+        contextArrayList.add(new WorkerContext(new AbstractStatusWorker(jobStatusRepo) {
             @Override
-            public void apply(JobRequest jobRequest) {
+            public void doWork(JobRequest jobRequest) {
                 log.info("step2 jobName={}", jobRequest.getJobName());
                 return;
             }
-        },  new WorkerParam(2, 2L)));
+
+            @Override
+            public String getName(){
+                return "step2";
+            }
+        }, WorkerParam.ofDefault()));
         return contextArrayList;
     }
 }
