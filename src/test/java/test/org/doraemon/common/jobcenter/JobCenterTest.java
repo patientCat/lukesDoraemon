@@ -2,6 +2,7 @@ package test.org.doraemon.common.jobcenter;
 
 import org.junit.Test;
 import org.luke.doraemon.common.jobcenter.model.JobRequest;
+import test.org.doraemon.common.jobcenter.ExampleJobCenter;
 
 public class JobCenterTest {
 

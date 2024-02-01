@@ -2,7 +2,7 @@ package test.org.doraemon.spock.common
 
 import spock.lang.Specification
 
-class BaseSpecTest extends Specification{
+class BaseSpec extends Specification{
     def "test"(){
         given:
         def x = 1

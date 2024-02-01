@@ -4,6 +4,7 @@ import com.google.common.collect.Lists;
 import io.vavr.Function2;
 import java.util.List;
 import java.util.function.Function;
+import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.luke.doraemon.common.constant.JobCenterName;
 import org.luke.doraemon.common.jobcenter.AbstractJobCenter;
@@ -16,6 +17,7 @@ import org.luke.doraemon.common.jobcenter.model.JobRequest;
 import org.luke.doraemon.common.jobcenter.repo.IJobStatusRepo;
 
 @Slf4j
+@AllArgsConstructor
 public class StatusJobCenter extends AbstractJobCenter {
     private IJobStatusRepo jobStatusRepo;
     @Override
